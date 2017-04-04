@@ -15,7 +15,13 @@ def Surafce_VTK(x,y,z,flname='Surface.vtk',fmt='%.5f'):
     import numpy as np
     import pandas as pd
     
-    Input=np.concatenate((x, y), axis=1)
+    x = x.ravel()
+    y = y.ravel()
+    z = z.ravel()
+    
+    Input=np.zeros((len(x),2))
+    Input[:,0]=x;
+    Input[:,1]=y;
     TRIANG = Delaunay(Input)
     TRIANG=TRIANG.simplices.copy()
     
